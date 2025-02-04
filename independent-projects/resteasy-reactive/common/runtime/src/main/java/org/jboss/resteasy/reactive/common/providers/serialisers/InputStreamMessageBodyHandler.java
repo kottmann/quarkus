@@ -36,14 +36,10 @@ public class InputStreamMessageBodyHandler implements MessageBodyWriter<InputStr
     protected void writeTo(InputStream inputStream, OutputStream entityStream) throws IOException {
         try {
             inputStream.transferTo(entityStream);
-        } finally {
+        }
+        finally {
             try {
                 inputStream.close();
-            } catch (IOException e) {
-                // Drop the exception so we don't mask real IO errors
-            }
-            try {
-                entityStream.close();
             } catch (IOException e) {
                 // Drop the exception so we don't mask real IO errors
             }

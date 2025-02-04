@@ -183,6 +183,7 @@ public class QuarkusErrorHandler implements Handler<RoutingContext> {
         if (event.response().ended()) {
             return;
         } else if (event.response().headWritten()) {
+            event.response().reset(2); // INTERNAL_ERROR, is there a constant for it?
             event.response().end();
             return;
         }
